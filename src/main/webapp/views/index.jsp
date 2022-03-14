@@ -35,6 +35,15 @@ Enter second number : <input type = "text" name = "num2"><br>
 <input type = "Submit">
 </form>
 
+<br>
+Let's Divide :
+<br>
+<form action="div">
+Enter first number : <input type="text" name = "num1"><br>
+Enter second number : <input type = "text" name = "num2"><br>
+<input type = "Submit">
+</form>
+
 </body>
 
 </html>

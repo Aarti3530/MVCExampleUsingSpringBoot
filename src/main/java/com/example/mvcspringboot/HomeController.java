@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home() {
-		return "index.jsp";
+		return "index";
 	}
 	
 	
@@ -27,7 +28,7 @@ public class HomeController {
 		HttpSession session = req.getSession();
 		session.setAttribute("res", res);
 		
-		return "result.jsp";
+		return "result";
 	}
 	
 	//using HttpSession and @RequestParam
@@ -35,7 +36,7 @@ public class HomeController {
 	public String sub(@RequestParam("num1") int num1,@RequestParam("num2") int num2,HttpSession session) {
 		int res = num1 - num2;
 		session.setAttribute("res", res);
-		return "result.jsp";
+		return "result";
 	}
 	
 	//using model and view
@@ -43,9 +44,17 @@ public class HomeController {
 	public ModelAndView mul(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
 		ModelAndView mv = new ModelAndView();
 		int res = num1 * num2;
-		mv.setViewName("result.jsp");
+		mv.setViewName("result");
 		mv.addObject("res",res);
 		return mv;
+	}
+	
+	//using ModelMap
+	@RequestMapping("div")
+	public String div(@RequestParam("num1") int num1,@RequestParam("num2") int num2,Model m) {
+		int res = num1/num2;
+		m.addAttribute("res",res);
+		return "result";
 	}
 	
 }
